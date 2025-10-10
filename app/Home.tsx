@@ -32,11 +32,11 @@ const Home = () => {
           </Text>
         </View>
 
-        <View className="absolute bottom-20 left-4 right-4">
-          <TouchableOpacity className="bg-[#00512C] rounded-full py-4 px-8 items-center shadow-lg">
-            <Text className="text-white font-semibold text-lg">Get started</Text>
-          </TouchableOpacity>
-        </View>
+       <View className="absolute bottom-40 left-1/2 -translate-x-1/2 w-[235px] h-[54px]">
+        <TouchableOpacity className="bg-[#00512C] rounded-full py-4 px-8 items-center justify-center shadow-lg">
+          <Text className="text-white font-semibold text-lg">Get started</Text>
+        </TouchableOpacity>
+       </View>
       </ImageBackground>
     </View>
   );
