@@ -1,7 +1,9 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, Image } from 'react-native';
 
 const Home = () => {
+ const router = useRouter();
   return (
     <View className="flex-1">
       <ImageBackground
@@ -13,15 +15,15 @@ const Home = () => {
           <Image
             source={require("../assets/images/coffee-cup.png")}
             resizeMode="contain"
-            className="w-[350px] h-[300px]"
+            className="w-full"
           />
         </View>
 
         <View className="absolute inset-0 justify-center items-center px-6 pt-48 ">
-          <Text className="text-center text-xl font-bold  text-white mb-2 leading-tight">
+          <Text className="text-center text-3xl font-bold  text-white mb-2 leading-tight">
             Coffee so good,
           </Text>
-          <Text className="text-center text-xl font-bold  text-white mb-2 leading-tight">
+          <Text className="text-center text-2xl font-bold  text-white mb-2 leading-tight">
             your taste buds
           </Text>
          <Text className="text-center text-xl font-bold  text-white mb-6 leading-tight">
@@ -33,8 +35,9 @@ const Home = () => {
         </View>
 
        <View className="absolute bottom-40 left-1/2 -translate-x-1/2 w-[235px] h-[54px]">
-        <TouchableOpacity className="bg-[#00512C] rounded-full py-4 px-8 items-center justify-center shadow-lg">
-          <Text className="text-white font-semibold text-lg">Get started</Text>
+        <TouchableOpacity className="bg-[#00512C] rounded-full py-4 px-8 items-center justify-center shadow-lg"
+           onPress={() => router.push("/CoffeePage")}>
+          <Text className="text-white font-semibold text-lg">Get Started</Text>
         </TouchableOpacity>
        </View>
       </ImageBackground>
