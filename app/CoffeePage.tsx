@@ -59,7 +59,7 @@ export default function CoffeePage() {
           ))}
         </ScrollView>
 
-        <View className="mt-4 flex-row flex-wrap justify-between">
+        <View className="mt-8 flex-row flex-wrap justify-between">
           {coffees.map((item) => (
             <View key={item.id} className="w-[48%] bg-white rounded-2xl shadow p-3 mb-3">
               <Image source={item.image} className="w-full h-28 rounded-xl" resizeMode="cover" />
@@ -75,7 +75,7 @@ export default function CoffeePage() {
           ))}
         </View>
 
-        <Text className="font-semibold text-base mt-2">Special Offer</Text>
+        <Text className="font-semibold text-base mt-12">Special Offer</Text>
         <View className="mt-2 flex-row flex-wrap justify-between">
           {specialOffers.map((item) => (
             <View key={item.id} className="w-[48%] bg-white rounded-2xl shadow p-3 mb-3">
