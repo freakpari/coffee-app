@@ -6,11 +6,12 @@ import { useState } from "react";
 
 export default function CoffeePage() {
   const router = useRouter();
-
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<number>(0); // 0 = All
 
   const categories = [
-    { id: 1, name: "Cappuccino", active: true },
+    { id: 0, name: "All" },
+    { id: 1, name: "Cappuccino" },
     { id: 2, name: "Coffee" },
     { id: 3, name: "Expresso" },
     { id: 4, name: "Cocoa" },
@@ -26,19 +27,31 @@ export default function CoffeePage() {
     { id: 4, name: "Cocoa", desc: "With Milk", price: "Rp55.000", image: require("../assets/images/cuppo4.png") },
   ];
 
-  const filteredCoffees = coffees.filter((item) =>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-  const filteredSpecialOffers = specialOffers.filter((item) =>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleCategoryPress = (id: number) => {
+    setActiveCategory(id);
+  };
+
+  const filteredCoffees = coffees.filter((item) => {
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === 0 || item.name.toLowerCase() === categories.find(c => c.id === activeCategory)?.name.toLowerCase();
+    return matchesSearch && matchesCategory;
+  });
+
+  const filteredSpecialOffers = specialOffers.filter((item) => {
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === 0 || item.name.toLowerCase() === categories.find(c => c.id === activeCategory)?.name.toLowerCase();
+    return matchesSearch && matchesCategory;
+  });
 
   return (
       <SafeAreaView className="flex-1 bg-white px-4">
         <ScrollView showsVerticalScrollIndicator={false}>
           <View className="flex-row items-center justify-between mt-3">
             <View className="flex-row items-center space-x-2">
-              <Image source={require("../assets/images/profile.png")} className="w-10 h-10 rounded-full" />
+              <Image
+                  source={require("../assets/images/profile.png")}
+                  className="w-10 h-10 rounded-full"
+              />
               <View>
                 <Text className="text-gray-500 text-xs">Jakarta, Indonesia</Text>
                 <Text className="text-lg font-semibold">Good morning, Yudi</Text>
@@ -63,24 +76,41 @@ export default function CoffeePage() {
           </View>
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-5">
-            {categories.map((cat) => (
-                <TouchableOpacity
-                    key={cat.id}
-                    className={`px-4 py-2 rounded-full mr-2 flex-row items-center ${cat.active ? "bg-green-900" : "bg-gray-100"}`}
-                >
-                  <Ionicons name="cafe" size={16} color={cat.active ? "white" : "#555"} />
-                  <Text className={`ml-1 text-sm ${cat.active ? "text-white" : "text-gray-700"}`}>
-                    {cat.name}
-                  </Text>
-                </TouchableOpacity>
-            ))}
+            {categories.map((cat) => {
+              const isActive = cat.id === activeCategory;
+              return (
+                  <TouchableOpacity
+                      key={cat.id}
+                      onPress={() => handleCategoryPress(cat.id)}
+                      className={`px-4 py-2 rounded-full mr-2 flex-row items-center ${
+                          isActive ? "bg-green-900" : "bg-gray-100"
+                      }`}
+                  >
+                    <Ionicons name="cafe" size={16} color={isActive ? "white" : "#555"} />
+                    <Text
+                        className={`ml-1 text-sm ${
+                            isActive ? "text-white" : "text-gray-700"
+                        }`}
+                    >
+                      {cat.name}
+                    </Text>
+                  </TouchableOpacity>
+              );
+            })}
           </ScrollView>
 
           <View className="mt-8 flex-row flex-wrap justify-between">
             {filteredCoffees.length > 0 ? (
                 filteredCoffees.map((item) => (
-                    <View key={item.id} className="w-[48%] bg-white rounded-2xl shadow p-3 mb-3">
-                      <Image source={item.image} className="w-full h-28 rounded-xl" resizeMode="cover" />
+                    <View
+                        key={item.id}
+                        className="w-[48%] bg-white rounded-2xl shadow p-3 mb-3"
+                    >
+                      <Image
+                          source={item.image}
+                          className="w-full h-28 rounded-xl"
+                          resizeMode="cover"
+                      />
                       <Text className="mt-2 font-semibold">{item.name}</Text>
                       <Text className="text-gray-500 text-xs">{item.desc}</Text>
                       <View className="flex-row justify-between items-center mt-2">
@@ -105,7 +135,9 @@ export default function CoffeePage() {
                     </View>
                 ))
             ) : (
-                <Text className="text-center text-gray-500 w-full mt-6">No coffee found.</Text>
+                <Text className="text-center text-gray-500 w-full mt-6">
+                  No coffee found.
+                </Text>
             )}
           </View>
 
@@ -113,8 +145,15 @@ export default function CoffeePage() {
           <View className="mt-2 flex-row flex-wrap justify-between">
             {filteredSpecialOffers.length > 0 ? (
                 filteredSpecialOffers.map((item) => (
-                    <View key={item.id} className="w-[48%] bg-white rounded-2xl shadow p-3 mb-3">
-                      <Image source={item.image} className="w-full h-28 rounded-xl" resizeMode="cover" />
+                    <View
+                        key={item.id}
+                        className="w-[48%] bg-white rounded-2xl shadow p-3 mb-3"
+                    >
+                      <Image
+                          source={item.image}
+                          className="w-full h-28 rounded-xl"
+                          resizeMode="cover"
+                      />
                       <Text className="mt-2 font-semibold">{item.name}</Text>
                       <Text className="text-gray-500 text-xs">{item.desc}</Text>
                       <View className="flex-row justify-between items-center mt-2">
@@ -139,7 +178,9 @@ export default function CoffeePage() {
                     </View>
                 ))
             ) : (
-                <Text className="text-center text-gray-500 w-full mt-6">No offers found.</Text>
+                <Text className="text-center text-gray-500 w-full mt-6">
+                  No offers found.
+                </Text>
             )}
           </View>
         </ScrollView>

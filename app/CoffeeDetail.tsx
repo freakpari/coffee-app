@@ -100,9 +100,27 @@ export default function CoffeeDetail() {
             </ScrollView>
 
             <View className="flex-row justify-between items-center bg-white py-12 px-6 shadow-lg border-t border-gray-200">
-                <TouchableOpacity className="bg-green-900 flex-1 py-3 rounded-2xl mr-2">
-                    <Text className="text-center text-white font-semibold">Add to cart    |     {price}</Text>
+                <TouchableOpacity
+                    className="bg-green-900 flex-1 py-3 rounded-2xl mr-2"
+                    onPress={() =>
+                        router.push({
+                            pathname: "/ShoppingCard" as any ,
+                            params: {
+                                coffee: JSON.stringify({
+                                    name,
+                                    desc,
+                                    price,
+                                    image,
+                                    size: selectedSize,
+                                    sugar: selectedSugar,
+                                }),
+                            },
+                        })
+                    }
+                >
+                    <Text className="text-center text-white font-semibold">Add to cart | {price}</Text>
                 </TouchableOpacity>
+
             </View>
         </SafeAreaView>
     );
