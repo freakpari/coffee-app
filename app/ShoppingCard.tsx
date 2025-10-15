@@ -22,8 +22,7 @@ export default function Cart() {
         <SafeAreaView className="flex-1 bg-white">
             <ScrollView className="px-5">
                 <Text className="text-lg font-semibold mt-5 mb-3">Cart</Text>
-
-                <View className="bg-white rounded-2xl shadow p-3 mb-3 flex-row">
+                <View className="bg-white rounded-2xl shadow p-3 mb-3 mt-8 flex-row">
                     <Image
                         source={{ uri: item.image }}
                         className="w-24 h-24 rounded-xl"
@@ -34,7 +33,7 @@ export default function Cart() {
                         <Text className="text-gray-500">{item.desc}</Text>
                         <Text className="text-gray-500 text-sm">Cap Size: {item.size}</Text>
                         <Text className="text-gray-500 text-sm">Level Sugar: {item.sugar}</Text>
-                        <Text className="text-gray-800 font-semibold mt-1">Rp{item.price}</Text>
+                        <Text className="text-gray-800 font-semibold mt-1">{item.price}</Text>
                     </View>
                     <View className="justify-center items-center">
                         <TouchableOpacity onPress={() => setQuantity(q => q + 1)} className="bg-green-900 p-2 rounded-full">
@@ -44,8 +43,7 @@ export default function Cart() {
                     </View>
                 </View>
 
-                {/* Totals */}
-                <View className="mt-5">
+                <View className="mt-12">
                     <View className="flex-row justify-between">
                         <Text>Subtotal</Text>
                         <Text>Rp {subtotal}</Text>
@@ -60,15 +58,14 @@ export default function Cart() {
                     </View>
                 </View>
 
-                {/* Payment */}
-                <View className="mt-6">
+                <View className="mt-12">
                     <Text className="font-semibold text-base mb-2">Payment</Text>
                     <View className="flex-row gap-2 space-x-3">
                         <Image source={require("../assets/images/visa.png")} className="w-16 h-10 rounded-xl"/>
                         <Image source={require("../assets/images/paypal.png")} className="w-16 h-10 rounded-xl"/>
                         <Image source={require("../assets/images/master.png")} className="w-16 h-10 rounded-xl"/>
                     </View>
-                    <TouchableOpacity className="bg-green-900 mt-6 py-3 rounded-2xl">
+                    <TouchableOpacity className="bg-green-900 mt-12 py-3 rounded-2xl">
                         <Text className="text-center text-white font-semibold">Buy</Text>
                     </TouchableOpacity>
                 </View>
