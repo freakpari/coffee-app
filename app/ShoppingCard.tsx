@@ -1,12 +1,11 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 
 export default function Cart() {
     const { coffee } = useLocalSearchParams();
-    const router = useRouter();
 
     const item = coffee ? JSON.parse(coffee as string) : null;
 
