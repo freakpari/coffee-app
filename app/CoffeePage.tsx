@@ -1,6 +1,7 @@
 import { View, Text, TextInput, Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import {useRouter} from "expo-router";
 
 export default function CoffeePage() {
   const categories = [
@@ -19,7 +20,7 @@ export default function CoffeePage() {
     { id: 3, name: "Coffee", desc: "With Sugar", price: "Rp50.000", image: require("../assets/images/cuppo3.png") },
     { id: 4, name: "Cappuccino", desc: "With Sugar", price: "Rp50.000", image: require("../assets/images/cuppo4.png") },
   ];
-
+ const router = useRouter();
   return (
     <SafeAreaView className="flex-1 bg-white px-4">
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -67,7 +68,20 @@ export default function CoffeePage() {
               <Text className="text-gray-500 text-xs">{item.desc}</Text>
               <View className="flex-row justify-between items-center mt-2">
                 <Text className="text-gray-800 font-semibold">{item.price}</Text>
-                <TouchableOpacity className="bg-green-900 rounded-full p-2">
+                <TouchableOpacity
+                    className="bg-green-900 rounded-full p-2"
+                    onPress={() =>
+                        router.push({
+                          pathname: "/CoffeeDetail" as any,
+                          params: {
+                            name: item.name,
+                            desc: item.desc,
+                            price: item.price,
+                            image: Image.resolveAssetSource(item.image).uri,
+                          },
+                        })
+                    }
+                >
                   <Ionicons name="add" size={18} color="white" />
                 </TouchableOpacity>
               </View>
@@ -84,7 +98,20 @@ export default function CoffeePage() {
               <Text className="text-gray-500 text-xs">{item.desc}</Text>
               <View className="flex-row justify-between items-center mt-2">
                 <Text className="text-gray-800 font-semibold">{item.price}</Text>
-                <TouchableOpacity className="bg-green-900 rounded-full p-2">
+                <TouchableOpacity
+                    className="bg-green-900 rounded-full p-2"
+                    onPress={() =>
+                        router.push({
+                          pathname: "/CoffeeDetail" as any,
+                          params: {
+                            name: item.name,
+                            desc: item.desc,
+                            price: item.price,
+                            image: Image.resolveAssetSource(item.image).uri,
+                          },
+                        })
+                    }
+                >
                   <Ionicons name="add" size={18} color="white" />
                 </TouchableOpacity>
               </View>
