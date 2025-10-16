@@ -1,4 +1,34 @@
-# Welcome to your Expo app 👋
+# ☕ Coffee App
+
+A  **React Native + Tailwind CSS** mobile app built with **Expo**.  
+This app allows users to browse, search, and filter different types of coffee, with smooth category switching and an elegant UI.
+
+---
+
+## 🚀 Features
+
+- 📱 Built using **Expo** and **React Native**
+- 🎨 Styled with **Tailwind CSS (NativeWind)**
+- 🔍 Search coffee by name
+- 🧭 Filter coffees by category (Espresso, Latte, Cappuccino, etc.)
+- ☕ “All” button to view every coffee
+- 🧩 Modular and reusable UI components
+- 💡 Clean, minimal, and mobile-friendly design
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|-------------|----------|
+| [React Native](https://reactnative.dev/) | UI and app logic |
+| [Expo](https://expo.dev/) | Development and build environment |
+| [NativeWind](https://www.nativewind.dev/) | Tailwind CSS styling |
+| [Ionicons](https://icons.expo.fyi/) | Icon set for UI |
+| TypeScript | Static typing (optional but recommended) |
+
+---
+
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
